@@ -4,14 +4,20 @@
 # shellcheck disable=SC2034
 TAP_PACKAGE=1
 
+switcheroo() {
+  local func=${1?func name is required}
+
+  if [[ -e .git ]]; then
+    mv .git .git-save
+    $func
+    mv .git-save .git
+  fi
+}
+
 build() {
-  mv .git .git-save
-  default_build
-  mv .git-save .git
+  switcheroo default_build
 }
 
 install() {
-  mv .git .git-save
-  default_install
-  mv .git-save .git
+  switcheroo default_install
 }
