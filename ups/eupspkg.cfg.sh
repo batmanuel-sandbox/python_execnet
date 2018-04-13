@@ -1,6 +1,17 @@
+# shellcheck shell=bash
+
 # Eupspkg config file. Source by 'eupspkg'
+# shellcheck disable=SC2034
 TAP_PACKAGE=1
 
-config() {
-    rm -rf .git
+build() {
+  mv .git .git-save
+  default_build
+  mv .git-save .git
+}
+
+install() {
+  mv .git .git-save
+  default_install
+  mv .git-save .git
 }
