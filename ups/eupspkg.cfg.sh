@@ -11,6 +11,8 @@ switcheroo() {
     mv .git .git-save
     $func
     mv .git-save .git
+  else
+    $func
   fi
 }
 
